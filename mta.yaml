@@ -62,8 +62,11 @@ resources:
       config:
         xsappname: auditoria-${org}-${space}
         tenant-mode: dedicated
+
   - name: auditoria-db
     type: com.sap.xs.hdi-container
     parameters:
+      config:
+        schema: audit
       service: hana
       service-plan: hdi-shared
