@@ -1,0 +1,166 @@
+{
+  "_version": "1.59.0",
+  "sap.app": {
+    "id": "auditoriaui",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:worklist",
+      "version": "1.14.2",
+      "toolsId": "689f40d9-c007-4ffa-8c12-82f0c2c94cb6"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/odata/v4/infraestructura/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "odataVersion": "4.0"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.126.2",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.ushell": {},
+        "sap.fe.templates": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "auditoriaui.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      },
+      "@i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "uri": "i18n/i18n.properties"
+      }
+    },
+    "resources": {
+      "css": []
+    },
+    "routing": {
+      "config": {},
+      "routes": [
+        {
+          "pattern": ":?query:",
+          "name": "TipoAuditoriaList",
+          "target": "TipoAuditoriaList"
+        },
+        {
+          "pattern": "TipoAuditoria({key}):?query:",
+          "name": "TipoAuditoriaObjectPage",
+          "target": "TipoAuditoriaObjectPage"
+        },
+        {
+          "pattern": "TipoAuditoria({key})/TOAUDITORIA({key2}):?query:",
+          "name": "AuditoriaObjectPage",
+          "target": "AuditoriaObjectPage"
+        }
+      ],
+      "targets": {
+        "TipoAuditoriaList": {
+          "type": "Component",
+          "id": "TipoAuditoriaList",
+          "name": "sap.fe.templates.ListReport",
+          "options": {
+            "settings": {
+              "contextPath": "/TipoAuditoria",
+              "variantManagement": "Page",
+              "hideFilterBar": true,
+              "navigation": {
+                "TipoAuditoria": {
+                  "detail": {
+                    "route": "TipoAuditoriaObjectPage"
+                  }
+                }
+              },
+              "controlConfiguration": {
+                "@com.sap.vocabularies.UI.v1.LineItem": {
+                  "tableSettings": {
+                    "type": "ResponsiveTable"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "TipoAuditoriaObjectPage": {
+          "type": "Component",
+          "id": "TipoAuditoriaObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "editableHeaderContent": false,
+              "contextPath": "/TipoAuditoria",
+              "navigation": {
+                "TOAUDITORIA": {
+                  "detail": {
+                    "route": "AuditoriaObjectPage"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "AuditoriaObjectPage": {
+          "type": "Component",
+          "id": "AuditoriaObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "editableHeaderContent": false,
+              "contextPath": "/TipoAuditoria/TOAUDITORIA"
+            }
+          }
+        }
+      }
+    }
+  },
+  "sap.fiori": {
+    "registrationIds": [],
+    "archeType": "transactional"
+  }
+}
