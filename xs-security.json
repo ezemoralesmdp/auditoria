@@ -1,6 +1,30 @@
 {
-  "scopes": [],
+  "xsappname": "auditoria",
+  "tenant-mode": "dedicated",
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.Auditor",
+      "description": "Auditor"
+    }
+  ],
   "attributes": [],
-  "role-templates": [],
-  "authorities-inheritance": false
+  "role-templates": [
+    {
+      "name": "Auditor",
+      "description": "generated",
+      "scope-references": [
+        "$XSAPPNAME.Auditor"
+      ],
+      "attribute-references": []
+    }
+  ],
+  "oauth2-configuration": {
+    "credential-types": [
+      "binding-secret",
+      "x509"
+    ],
+    "redirect-uris": [
+      "https://*.applicationstudio.cloud.sap/**"
+    ]
+  }
 }
