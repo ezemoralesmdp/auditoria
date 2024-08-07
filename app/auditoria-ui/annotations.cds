@@ -1,0 +1,1 @@
+using InfraestructuraService as service from '../../srv/entities_srv';
