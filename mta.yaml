@@ -64,7 +64,7 @@ resources:
       service-plan: application
       path: ./xs-security.json
       config:
-        xsappname: auditoria-${org}-${space}
+        xsappname: auditoria
         tenant-mode: dedicated
 
   - name: auditoria-db
