@@ -16,6 +16,7 @@ modules:
     path: gen/srv
     parameters:
       buildpack: nodejs_buildpack
+      memory: 256MB
       readiness-health-check-type: http
       readiness-health-check-http-endpoint: /health
     build-parameters:
@@ -33,6 +34,7 @@ modules:
     path: gen/db
     parameters:
       buildpack: nodejs_buildpack
+      memory: 256MB
     requires:
       - name: auditoria-db
 
@@ -43,6 +45,8 @@ modules:
       keep-existing-routes: true
       disk-quota: 256M
       memory: 256M
+    build-parameters:
+      ignore: ["default-env.json", ".env"]
     requires:
       - name: srv-api
         group: destinations

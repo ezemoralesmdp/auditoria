@@ -21,7 +21,8 @@
   },
   "scripts": {
     "start": "cds-serve",
-    "watch-auditoria-ui": "cds watch --open auditoria-ui/webapp/index.html?sap-ui-xx-viewCache=false"
+    "watch-auditoria-ui": "cds watch --open auditoria-ui/webapp/index.html?sap-ui-xx-viewCache=false",
+    "deploy": "cf deploy mta_archives/auditoria_1.0.0.mtar -f --delete-services"
   },
   "cds": {
     "requires": {
